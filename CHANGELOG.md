@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.1.0] - 2024-07-17
+### Added
+- **Example 3: Full Page to PDF** integrated into `index.html`.
+  - New sidebar navigation link.
+  - HTML structure for a sample full-page report with styled header, content, table, and footer.
+  - jQuery initialization for `fusionPDF` to generate PDF from the full page content.
+  - CSS styles for the report layout added to `assets/css/styles.css`.
+
 ## [1.0.0] - 2024-07-17
 
 ### Added

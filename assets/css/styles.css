@@ -55,3 +55,79 @@ main {
 pre[class*="language-"] {
     border-radius: .5rem;
 }
+
+/* Styles for Example 3: Full Page Report */
+.report-styles {
+  font-family: Arial, sans-serif; /* Consistent font for the report */
+  color: #333; /* Standard text color */
+  background-color: #ffffff; /* Override Bootstrap's bg-light for a white report background */
+  /* Bootstrap classes p-3, border, rounded are already applied in HTML */
+}
+
+#printable-area-example3 .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
+  margin-bottom: 30px;
+}
+
+#printable-area-example3 .header h1 {
+  margin: 0;
+  color: #0056b3; /* A distinct blue for the report title */
+  font-size: 1.75rem; /* Slightly larger for emphasis */
+}
+
+#printable-area-example3 .company-info {
+  text-align: right;
+  font-size: 0.9em;
+}
+
+#printable-area-example3 .company-info img {
+  max-width: 120px; /* Adjusted for better fit in card layout */
+  margin-bottom: 10px;
+}
+
+#printable-area-example3 .content p {
+  margin-bottom: 1em;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+#printable-area-example3 .content h2 {
+  font-size: 1.3rem;
+  color: #333;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #eaeaea;
+  padding-bottom: 0.25rem;
+}
+
+#printable-area-example3 table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 0.9rem;
+}
+
+#printable-area-example3 th, 
+#printable-area-example3 td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: left;
+}
+
+#printable-area-example3 th {
+  background-color: #f8f9fa; /* Lighter than card header for differentiation */
+  font-weight: bold;
+}
+
+#printable-area-example3 .footer {
+  text-align: center;
+  margin-top: 30px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  font-size: 0.8em;
+  color: #777;
+}

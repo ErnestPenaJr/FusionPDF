@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FusionPDF - A Modern jQuery PDF Generation Plugin</title>
-  <meta name="description" content="FusionPDF is a powerful jQuery plugin for client-side PDF generation from HTML or JSON. Easy to use, flexible, and requires no server-side processing.">
+  <meta name="description"
+    content="FusionPDF is a powerful jQuery plugin for client-side PDF generation from HTML or JSON. Easy to use, flexible, and requires no server-side processing.">
   <meta name="keywords" content="FusionPDF, jQuery Plugin, PDF Generation, HTML to PDF, JSON to PDF, JavaScript PDF">
   <meta name="author" content="Ernest Pena Jr">
   <meta name="created" content="2025-06-11">
@@ -16,7 +17,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <!-- Prism.js CSS for syntax highlighting -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
   <!-- SweetAlert2 CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.min.css">
   <!-- Custom Styles -->
@@ -59,6 +61,11 @@
                 <i class="fas fa-file-code me-2"></i> JSON to PDF
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section-fullpage-to-pdf">
+                <i class="fas fa-file-alt me-2"></i> Full Page to PDF
+              </a>
+            </li>
           </ul>
           <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
             <span>Advanced</span>
@@ -79,10 +86,12 @@
       </nav>
 
       <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div
+          class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h1 class="h2">FusionPDF jQuery Plugin</h1>
           <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="https://github.com/epenajr/fusion-pdf" class="btn btn-sm btn-outline-secondary" target="_blank">
+            <a href="https://github.com/ErnestPenaJr/FusionPDF" class="btn btn-sm btn-outline-secondary"
+              target="_blank">
               <i class="fab fa-github me-2"></i> View on GitHub
             </a>
           </div>
@@ -93,8 +102,8 @@
           <h2><i class="fas fa-info-circle me-2"></i>Introduction</h2>
           <p class="lead">FusionPDF is a powerful client-side jQuery plugin for generating PDF documents directly from
             HTML content or JSON data. It leverages the robust capabilities of <a href="https://pdf-lib.js.org/"
-              target="_blank">pdf-lib</a> and <a href="https://html2canvas.hertzen.com/"
-              target="_blank">html2canvas</a> to provide a seamless, server-less PDF creation experience.</p>
+              target="_blank">pdf-lib</a> and <a href="https://html2canvas.hertzen.com/" target="_blank">html2canvas</a>
+            to provide a seamless, server-less PDF creation experience.</p>
           <div class="alert alert-primary" role="alert">
             <i class="fas fa-bullhorn me-2"></i><strong>No Server-Side Processing Needed!</strong> Everything happens
             in the user's browser, making it fast, secure, and easy to integrate into any web application.
@@ -233,11 +242,110 @@ $(document).ready(function() {
           </code></pre>
         </section>
 
+        <!-- Full Page to PDF Section -->
+        <section id="section-fullpage-to-pdf" class="section">
+          <h2><i class="fas fa-file-alt me-2"></i>Example 3: Convert Full Styled Page/Report to PDF</h2>
+          <p>This example demonstrates converting a more complex, styled HTML structure, like a report, into a PDF
+            document. The styling for this specific report will be added to <code>assets/css/styles.css</code>.</p>
+          <div class="card">
+            <div class="card-header">
+              Live Demo
+            </div>
+            <div class="card-body">
+              <div id="printable-area-example3" class="p-3 border rounded bg-light report-styles">
+                <header class="header">
+                  <h1>Quarterly Business Report</h1>
+                  <div class="company-info">
+                    <img src="assets/images/logo.png" alt="Company Logo">
+                    <p><strong>FusionPDF Inc.</strong><br>123 Innovation Drive<br>Tech City, CA 94000</p>
+                  </div>
+                </header>
+                <section class="content">
+                  <h2>1. Executive Summary</h2>
+                  <p>This report summarizes the key performance indicators (KPIs) for the third quarter of 2024.
+                    Overall, the company has demonstrated strong growth in key markets, with a notable increase in user
+                    engagement and product adoption. Strategic initiatives launched in Q2 have started to yield positive
+                    results, though challenges in supply chain logistics remain.</p>
+                  <h2>2. Financial Performance</h2>
+                  <p>The financial results for this quarter are detailed in the table below. Revenue increased by 15%
+                    compared to the previous quarter, driven primarily by sales of our flagship product, the 'Innovator
+                    3000'.</p>
+                  <table>
+                    <thead>
+                      <tr>
+                        <th>Metric</th>
+                        <th>Q3 2024</th>
+                        <th>Q2 2024</th>
+                        <th>Change</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Total Revenue</td>
+                        <td>$1,250,000</td>
+                        <td>$1,087,000</td>
+                        <td>+15.0%</td>
+                      </tr>
+                      <tr>
+                        <td>Net Profit</td>
+                        <td>$375,000</td>
+                        <td>$295,000</td>
+                        <td>+27.1%</td>
+                      </tr>
+                      <tr>
+                        <td>Operating Margin</td>
+                        <td>30.0%</td>
+                        <td>27.1%</td>
+                        <td>+2.9pp</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                  <h2>3. Key Initiatives & Outlook</h2>
+                  <p>Our expansion into the European market is proceeding on schedule. We have established a new
+                    distribution center in Frankfurt, which is expected to be fully operational by the end of Q4.
+                    Looking ahead, our focus will be on leveraging AI to further enhance our product offerings and
+                    personalize the customer experience.</p>
+                </section>
+                <footer class="footer">
+                  <p>Confidential &copy; 2024 FusionPDF Inc. All rights reserved.</p>
+                  <p>Report generated on: <span id="generation-date-example3"></span></p>
+                </footer>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button id="generateFullPagePdfBtn" class="btn btn-info"><i class="fas fa-print me-2"></i>Generate Full
+                Page PDF</button>
+            </div>
+          </div>
+
+          <h5 class="mt-4">jQuery Initialization</h5>
+          <pre><code class="language-javascript">
+$(document).ready(function() {
+  // Set generation date for Example 3
+  $('#printable-area-example3 #generation-date-example3').text(new Date().toLocaleDateString());
+
+  $('#generateFullPagePdfBtn').fusionPDF({
+    contentSource: '#printable-area-example3',
+    filename: 'full-page-report.pdf',
+    pdfOptions: {
+      margin: 0 // Margins are handled by the printable-area's padding
+    },
+    html2canvasOptions: {
+      scale: 2, // Higher scale for better quality
+      useCORS: true, // Important if you have external images
+      logging: true
+    }
+  });
+});
+          </code></pre>
+        </section>
+
         <!-- Options Section -->
         <section id="section-options" class="section">
           <h2><i class="fas fa-sliders-h me-2"></i>Configuration Options</h2>
           <p>Customize the PDF generation process with these options. Pass them as an object to the
-            <code>.fusionPDF()</code> method.</p>
+            <code>.fusionPDF()</code> method.
+          </p>
           <div class="table-responsive">
             <table class="table table-bordered table-striped">
               <thead class="table-dark">
@@ -273,14 +381,16 @@ $(document).ready(function() {
                   <td>Object</td>
                   <td><code>{}</code></td>
                   <td>An object of options passed directly to the FusionPDFCore engine (e.g., <code>margin</code>,
-                    <code>fontSize</code>, <code>fontName</code>).</td>
+                    <code>fontSize</code>, <code>fontName</code>).
+                  </td>
                 </tr>
                 <tr>
                   <td><code>html2canvasOptions</code></td>
                   <td>Object</td>
                   <td><code>{}</code></td>
                   <td>An object of options passed directly to the html2canvas library (e.g., <code>scale</code>,
-                    <code>backgroundColor</code>).</td>
+                    <code>backgroundColor</code>).
+                  </td>
                 </tr>
               </tbody>
             </table>
@@ -330,7 +440,8 @@ $('#generatePdfBtn').on('fusionpdf:error', function(event, error) {
   <!-- Prism.js for Syntax Highlighting -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  <script
+    src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
 
@@ -403,6 +514,23 @@ $('#generatePdfBtn').on('fusionpdf:error', function(event, error) {
           fontName: 'Courier',
           fontSize: 10,
           margin: { top: 50, right: 30, bottom: 50, left: 30 }
+        }
+      });
+
+      // Example 3: Full Page Report to PDF
+      // Set generation date for Example 3
+      $('#printable-area-example3 #generation-date-example3').text(new Date().toLocaleDateString());
+
+      $('#generateFullPagePdfBtn').fusionPDF({
+        contentSource: '#printable-area-example3',
+        filename: 'full-page-report.pdf',
+        pdfOptions: {
+          margin: 0 // Margins are handled by the printable-area's padding
+        },
+        html2canvasOptions: {
+          scale: 2, // Higher scale for better quality
+          useCORS: true, // Important if you have external images
+          logging: true // Enable for debugging html2canvas issues
         }
       });
 
