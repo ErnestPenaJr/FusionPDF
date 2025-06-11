@@ -1,0 +1,30 @@
+{
+  "name": "fusionpdf",
+  "version": "0.1.0-jquery",
+  "description": "A jQuery plugin to generate PDFs from HTML or JSON content.",
+  "main": "src/jquery/fusionpdf.jquery.js", 
+  "scripts": {
+    "test": "echo \"Error: no test specified yet\" && exit 1",
+    "build": "echo \"Build process not yet defined\"",
+    "lint": "eslint src/**/*.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "pdf",
+    "jquery",
+    "html-to-pdf",
+    "json-to-pdf",
+    "javascript"
+  ],
+  "author": "Your Name or Company",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.0.0"
+  },
+  "peerDependencies": {
+    "jquery": ">=3.0.0"
+  }
+}

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FusionPDF jQuery Test</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="../../src/core/fusionpdf.js"></script> <!-- Core library first -->
+  <script src="../../src/jquery/fusionpdf.jquery.js"></script>
+  <link rel="stylesheet" href="../../assets/css/styles.css">
+</head>
+<body>
+
+  <h1>FusionPDF jQuery Plugin Test Page</h1>
+
+  <div class="container">
+    <h2>Test 1: Generate PDF from HTML content</h2>
+    <div id="testHtmlContent">
+      <h3>Report Title</h3>
+      <p>This is a paragraph of text that will be converted into a PDF.</p>
+      <ul>
+        <li>List item 1</li>
+        <li>List item 2</li>
+      </ul>
+    </div>
+    <button id="btnHtmlToPdf">Generate PDF from HTML above</button>
+  </div>
+
+  <div class="container">
+    <h2>Test 2: Generate PDF from JSON data</h2>
+    <pre id="testJsonDataDisplay">{"title":"My JSON Report","data":[{"id":1,"name":"Item A"},{"id":2,"name":"Item B"}]}</pre>
+    <button id="btnJsonToPdf">Generate PDF from JSON above</button>
+  </div>
+  
+  <div class="container">
+    <h2>Test 3: Generate PDF from HTML content (using a div as a button)</h2>
+    <div id="testHtmlContentLink">
+      <h3>Another Report</h3>
+      <p>Content for the third test.</p>
+    </div>
+    <div id="btnLikeHtmlToPdf" class="button-like">Generate PDF (div as button)</div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Test 1: HTML to PDF
+      $('#btnHtmlToPdf').fusionPDF({
+        pdfOptions: { custom: 'html_options' },
+        filename: 'html-report.pdf'
+      }).on('click', function() { // Bind to the button itself, not the content div
+        $('#testHtmlContent').fusionPDF('trigger'); // Manually trigger on the content div if needed, or re-think plugin structure
+      });
+      // Re-thinking: The plugin should be attached to the element that triggers the PDF generation.
+      // The content source can be specified via options or defaults to the element's HTML.
+
+      // Corrected approach for Test 1:
+      // The plugin is on the button, and it will use the HTML of a target element.
+      $('#btnHtmlToPdf').off('click').fusionPDF({
+        filename: 'html-report.pdf',
+        // New option to specify content source if not the element itself
+        contentSource: '#testHtmlContent' 
+      });
+
+      // Test 2: JSON to PDF
+      // The button itself will have data-json or we pass it via options
+      const jsonData = { title: "My JSON Report", data: [{ id: 1, name: "Item A" }, { id: 2, name: "Item B" }] };
+      $('#btnJsonToPdf').attr('data-json', JSON.stringify(jsonData)); // Set data attribute
+      $('#btnJsonToPdf').fusionPDF({
+        filename: 'json-report.pdf',
+        pdfOptions: { template: 'basic_table' }
+      });
+      
+      // Test 3: Div as button for HTML content
+      $('#btnLikeHtmlToPdf').fusionPDF({
+        filename: 'div-button-report.pdf',
+        contentSource: '#testHtmlContentLink'
+      });
+
+      // Global event handlers for feedback
+      $(document).on('fusionpdf:success', function(event, data) {
+        console.log('FusionPDF Success:', event.target, data);
+        alert('PDF "' + data.filename + '" generated successfully! Check console for blob. Opening in new tab.');
+        const url = URL.createObjectURL(data.blob);
+        window.open(url, '_blank');
+      });
+
+      $(document).on('fusionpdf:error', function(event, error) {
+        console.error('FusionPDF Error:', event.target, error);
+        alert('PDF generation failed. Check console.');
+      });
+      
+      // Initialize plugins with the standard plugin implementation
+      $('#btnHtmlToPdf').fusionPDF({
+        filename: 'html-report.pdf',
+        contentSource: '#testHtmlContent'
+      });
+      
+      $('#btnJsonToPdf').fusionPDF({
+        filename: 'json-report.pdf',
+        json: { title: "My JSON Report", data: [{ id: 1, name: "Item A" }, { id: 2, name: "Item B" }] }
+      });
+      
+      $('#btnLikeHtmlToPdf').fusionPDF({
+        filename: 'div-button-report.pdf',
+        contentSource: '#testHtmlContentLink'
+      });
+
+    });
+  </script>
+</body>
+</html>

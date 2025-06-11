@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FusionPDF - Full Page Test</title>
+
+  <!-- Libraries -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+
+  <!-- FusionPDF Scripts -->
+  <script src="../../src/core/fusionpdf.js"></script>
+  <script src="../../src/jquery/fusionpdf.jquery.js"></script>
+
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 20px;
+    }
+    #control-panel {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+      background: white;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      z-index: 1000;
+    }
+    #control-panel button {
+      background-color: #28a745;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    #control-panel button:hover {
+      background-color: #218838;
+    }
+    #printable-area {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 40px;
+      background: white;
+      border: 1px solid #ddd;
+      box-shadow: 0 0 15px rgba(0,0,0,0.05);
+    }
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 20px;
+      margin-bottom: 30px;
+    }
+    .header h1 {
+      margin: 0;
+      color: #0056b3;
+    }
+    .header .company-info {
+      text-align: right;
+      font-size: 0.9em;
+    }
+    .company-info img {
+      max-width: 150px;
+      margin-bottom: 10px;
+    }
+    .content p {
+      margin-bottom: 1em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 25px 0;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+    .footer {
+      text-align: center;
+      margin-top: 40px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+      font-size: 0.8em;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="control-panel">
+    <button id="generateFullPagePdf">Generate Full Page PDF</button>
+  </div>
+
+  <div id="printable-area">
+    <header class="header">
+      <h1>Quarterly Business Report</h1>
+      <div class="company-info">
+        <img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxNTAiIGhlaWdodD0iNTAiIHZpZXdCb3g9IjAgMCAxNTAgNTAiIGJhY2tncm91bmQ9IiNlZWUiPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBkb21pbmFudC1iYXNlbGluZT0ibWlkZGxlIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0ic2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzgwODA4MCI+WW91ckxvZ288L3RleHQ+PC9zdmc+" alt="Company Logo">
+        <p><strong>FusionPDF Inc.</strong><br>123 Innovation Drive<br>Tech City, CA 94000</p>
+      </div>
+    </header>
+
+    <section class="content">
+      <h2>1. Executive Summary</h2>
+      <p>This report summarizes the key performance indicators (KPIs) for the third quarter of 2024. Overall, the company has demonstrated strong growth in key markets, with a notable increase in user engagement and product adoption. Strategic initiatives launched in Q2 have started to yield positive results, though challenges in supply chain logistics remain.</p>
+
+      <h2>2. Financial Performance</h2>
+      <p>The financial results for this quarter are detailed in the table below. Revenue increased by 15% compared to the previous quarter, driven primarily by sales of our flagship product, the 'Innovator 3000'.</p>
+      
+      <table>
+        <thead>
+          <tr>
+            <th>Metric</th>
+            <th>Q3 2024</th>
+            <th>Q2 2024</th>
+            <th>Change</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Total Revenue</td>
+            <td>$1,250,000</td>
+            <td>$1,087,000</td>
+            <td>+15.0%</td>
+          </tr>
+          <tr>
+            <td>Net Profit</td>
+            <td>$375,000</td>
+            <td>$295,000</td>
+            <td>+27.1%</td>
+          </tr>
+          <tr>
+            <td>Operating Margin</td>
+            <td>30.0%</td>
+            <td>27.1%</td>
+            <td>+2.9pp</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h2>3. Key Initiatives & Outlook</h2>
+      <p>Our expansion into the European market is proceeding on schedule. We have established a new distribution center in Frankfurt, which is expected to be fully operational by the end of Q4. Looking ahead, our focus will be on leveraging AI to further enhance our product offerings and personalize the customer experience.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor. Cras elementum ultrices diam. Maecenas ligula massa, varius a, semper congue, euismod non, mi.</p>
+    </section>
+
+    <footer class="footer">
+      <p>Confidential &copy; 2024 FusionPDF Inc. All rights reserved.</p>
+      <p>Report generated on: <span id="generation-date"></span></p>
+    </footer>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+      // Set generation date
+      $('#generation-date').text(new Date().toLocaleDateString());
+
+      // Initialize FusionPDF on the button
+      $('#generateFullPagePdf').fusionPDF({
+        contentSource: '#printable-area',
+        filename: 'full-page-report.pdf',
+        pdfOptions: {
+          margin: 0 // Margins are handled by the printable-area's padding
+        },
+        html2canvasOptions: {
+          scale: 2, // Higher scale for better quality
+          useCORS: true, // Important if you have external images
+          logging: true
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FusionPDF - A Modern jQuery PDF Generation Plugin</title>
+  <meta name="description" content="FusionPDF is a powerful jQuery plugin for client-side PDF generation from HTML or JSON. Easy to use, flexible, and requires no server-side processing.">
+  <meta name="keywords" content="FusionPDF, jQuery Plugin, PDF Generation, HTML to PDF, JSON to PDF, JavaScript PDF">
+  <meta name="author" content="Ernest Pena Jr">
+  <meta name="created" content="2025-06-11">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <!-- Prism.js CSS for syntax highlighting -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-okaidia.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.css">
+  <!-- SweetAlert2 CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-bootstrap-4/bootstrap-4.min.css">
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="./assets/css/styles.css">
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#sidebarMenu" data-bs-offset="100">
+
+  <div class="container-fluid">
+    <div class="row">
+      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+        <div class="position-sticky pt-3">
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>FusionPDF</span>
+          </h6>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link" href="#section-introduction">
+                <i class="fas fa-home me-2"></i> Introduction
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section-setup">
+                <i class="fas fa-cogs me-2"></i> Setup
+              </a>
+            </li>
+          </ul>
+
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Examples</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#section-html-to-pdf">
+                <i class="fab fa-html5 me-2"></i> HTML to PDF
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section-json-to-pdf">
+                <i class="fas fa-file-code me-2"></i> JSON to PDF
+              </a>
+            </li>
+          </ul>
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Advanced</span>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="#section-options">
+                <i class="fas fa-sliders-h me-2"></i> Options
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#section-events">
+                <i class="fas fa-bolt me-2"></i> Events
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+          <h1 class="h2">FusionPDF jQuery Plugin</h1>
+          <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="https://github.com/epenajr/fusion-pdf" class="btn btn-sm btn-outline-secondary" target="_blank">
+              <i class="fab fa-github me-2"></i> View on GitHub
+            </a>
+          </div>
+        </div>
+
+        <!-- Introduction Section -->
+        <section id="section-introduction" class="section">
+          <h2><i class="fas fa-info-circle me-2"></i>Introduction</h2>
+          <p class="lead">FusionPDF is a powerful client-side jQuery plugin for generating PDF documents directly from
+            HTML content or JSON data. It leverages the robust capabilities of <a href="https://pdf-lib.js.org/"
+              target="_blank">pdf-lib</a> and <a href="https://html2canvas.hertzen.com/"
+              target="_blank">html2canvas</a> to provide a seamless, server-less PDF creation experience.</p>
+          <div class="alert alert-primary" role="alert">
+            <i class="fas fa-bullhorn me-2"></i><strong>No Server-Side Processing Needed!</strong> Everything happens
+            in the user's browser, making it fast, secure, and easy to integrate into any web application.
+          </div>
+        </section>
+
+        <!-- Setup Section -->
+        <section id="section-setup" class="section">
+          <h2><i class="fas fa-cogs me-2"></i>Setup &amp; Dependencies</h2>
+          <p>To get started with FusionPDF, you need to include a few libraries in your project. The order is important!
+          </p>
+          <div class="card">
+            <div class="card-header">
+              Required Libraries
+            </div>
+            <div class="card-body">
+              <pre><code class="language-markup">
+&lt;!-- 1. jQuery (3.x+) --&gt;
+&lt;script src="https://code.jquery.com/jquery-3.7.1.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 2. PDF-Lib (Core PDF generation) --&gt;
+&lt;script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 3. html2canvas (Required for HTML element to PDF) --&gt;
+&lt;script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"&gt;&lt;/script&gt;
+
+&lt;!-- 4. SweetAlert2 (For beautiful alerts - Optional but recommended) --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"&gt;&lt;/script&gt;
+
+&lt;!-- 5. FusionPDF Core and jQuery Plugin --&gt;
+&lt;script src="./src/core/fusionpdf.js"&gt;&lt;/script&gt;
+&lt;script src="./src/jquery/fusionpdf.jquery.js"&gt;&lt;/script&gt;
+                </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- HTML to PDF Section -->
+        <section id="section-html-to-pdf" class="section">
+          <h2><i class="fab fa-html5 me-2"></i>Example 1: Convert HTML Content to PDF</h2>
+          <p>This example demonstrates converting a specific <code>&lt;div&gt;</code>'s content into a PDF document.</p>
+          <div class="card">
+            <div class="card-header">
+              Live Demo
+            </div>
+            <div class="card-body">
+              <div id="myHtmlContent" class="p-3 border rounded bg-light">
+                <h3>Sample Report</h3>
+                <p>This is a paragraph within the HTML content that will be included in the PDF.</p>
+                <ul>
+                  <li>Point one</li>
+                  <li>Point two</li>
+                  <li>Point three</li>
+                </ul>
+                <p>And another paragraph with some <strong>strong text</strong> and <em>emphasized text</em>.</p>
+              </div>
+            </div>
+            <div class="card-footer text-center">
+              <button id="generateHtmlPdfBtn" class="btn btn-primary"><i class="fas fa-file-pdf me-2"></i>Generate PDF
+                from HTML</button>
+            </div>
+          </div>
+
+          <div class="row mt-4">
+            <div class="col-lg-6">
+              <h5>HTML Structure</h5>
+              <pre><code class="language-markup">
+&lt;div id="myHtmlContent"&gt;
+  &lt;h3&gt;Sample Report&lt;/h3&gt;
+  ...
+&lt;/div&gt;
+
+&lt;button id="generateHtmlPdfBtn"&gt;
+  Generate PDF
+&lt;/button&gt;
+              </code></pre>
+            </div>
+            <div class="col-lg-6">
+              <h5>jQuery Initialization</h5>
+              <pre><code class="language-javascript">
+$(document).ready(function() {
+  $('#generateHtmlPdfBtn').fusionPDF({
+    contentSource: '#myHtmlContent',
+    filename: 'html-document.pdf',
+    pdfOptions: { margin: 40 },
+    html2canvasOptions: { scale: 2 }
+  });
+});
+              </code></pre>
+            </div>
+          </div>
+        </section>
+
+        <!-- JSON to PDF Section -->
+        <section id="section-json-to-pdf" class="section">
+          <h2><i class="fas fa-file-code me-2"></i>Example 2: Convert JSON Data to PDF</h2>
+          <p>Pass JSON data directly to generate a PDF. The data will be stringified and rendered as pre-formatted
+            text.</p>
+          <div class="card">
+            <div class="card-header">
+              Live Demo
+            </div>
+            <div class="card-body">
+              <p>The button below will generate a PDF from a predefined JSON object.</p>
+            </div>
+            <div class="card-footer text-center">
+              <button id="generateJsonPdfBtn" class="btn btn-success"><i class="fas fa-file-invoice me-2"></i>Generate
+                PDF from JSON</button>
+            </div>
+          </div>
+          <h5 class="mt-4">jQuery Initialization</h5>
+          <pre><code class="language-javascript">
+$(document).ready(function() {
+  const myJsonData = {
+    reportTitle: "Quarterly Sales Report",
+    period: "Q3 2024",
+    author: "Sales Team",
+    data: [
+      { product: "Widget A", unitsSold: 1500, revenue: 75000 },
+      { product: "Widget B", unitsSold: 1200, revenue: 96000 },
+      { product: "Accessory X", unitsSold: 3000, revenue: 30000 }
+    ],
+    summary: "Overall positive growth in Q3."
+  };
+
+  $('#generateJsonPdfBtn').fusionPDF({
+    json: myJsonData,
+    filename: 'json-document.pdf',
+    pdfOptions: {
+      fontName: 'Courier',
+      fontSize: 10,
+      margin: { top: 50, right: 30, bottom: 50, left: 30 }
+    }
+  });
+});
+          </code></pre>
+        </section>
+
+        <!-- Options Section -->
+        <section id="section-options" class="section">
+          <h2><i class="fas fa-sliders-h me-2"></i>Configuration Options</h2>
+          <p>Customize the PDF generation process with these options. Pass them as an object to the
+            <code>.fusionPDF()</code> method.</p>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped">
+              <thead class="table-dark">
+                <tr>
+                  <th>Option</th>
+                  <th>Type</th>
+                  <th>Default</th>
+                  <th>Description</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><code>contentSource</code></td>
+                  <td>String</td>
+                  <td><code>null</code></td>
+                  <td>A CSS selector for the HTML element to convert. If null, the plugin attempts to find a target.
+                  </td>
+                </tr>
+                <tr>
+                  <td><code>json</code></td>
+                  <td>Object/Array/String</td>
+                  <td><code>null</code></td>
+                  <td>The JSON data to be stringified and added to the PDF.</td>
+                </tr>
+                <tr>
+                  <td><code>filename</code></td>
+                  <td>String</td>
+                  <td>'document.pdf'</td>
+                  <td>The name of the file to be downloaded.</td>
+                </tr>
+                <tr>
+                  <td><code>pdfOptions</code></td>
+                  <td>Object</td>
+                  <td><code>{}</code></td>
+                  <td>An object of options passed directly to the FusionPDFCore engine (e.g., <code>margin</code>,
+                    <code>fontSize</code>, <code>fontName</code>).</td>
+                </tr>
+                <tr>
+                  <td><code>html2canvasOptions</code></td>
+                  <td>Object</td>
+                  <td><code>{}</code></td>
+                  <td>An object of options passed directly to the html2canvas library (e.g., <code>scale</code>,
+                    <code>backgroundColor</code>).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- Events Section -->
+        <section id="section-events" class="section">
+          <h2><i class="fas fa-bolt me-2"></i>Handling Events</h2>
+          <p>FusionPDF triggers custom events on the jQuery element to notify you of its progress. This is useful for
+            showing loading indicators or handling errors.</p>
+          <pre><code class="language-javascript">
+// Listen for the success event
+$('#generatePdfBtn').on('fusionpdf:success', function(event, data) {
+  console.log('PDF generated!', data.blob, data.filename);
+  Swal.fire('Success!', 'PDF generated successfully!', 'success');
+});
+
+// Listen for the error event
+$('#generatePdfBtn').on('fusionpdf:error', function(event, error) {
+  console.error('PDF generation failed:', error);
+  Swal.fire('Error!', 'PDF generation failed. Check console.', 'error');
+});
+            </code></pre>
+          <div class="alert alert-info mt-3">
+            <i class="fas fa-lightbulb me-2"></i><strong>Pro Tip:</strong> You can set up global event handlers on the
+            <code>document</code> to manage all FusionPDF events from one place, as shown in the JSON example's
+            implementation script.
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- Core Libraries -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  <!-- FusionPDF Libraries -->
+  <script src="./src/core/fusionpdf.js"></script>
+  <script src="./src/jquery/fusionpdf.jquery.js"></script>
+
+  <!-- Prism.js for Syntax Highlighting -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/toolbar/prism-toolbar.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markup.min.js"></script>
+
+  <!-- Page-specific Scripts -->
+  <script>
+    $(document).ready(function () {
+
+      // --- Event Handlers for Loading/Success/Error ---
+      // Use SweetAlert2 for a better user experience
+      $(document).on('fusionpdf:start', function (event) {
+        Swal.fire({
+          title: 'Generating PDF...',
+          html: 'Please wait while the document is being created.',
+          allowOutsideClick: false,
+          didOpen: () => {
+            Swal.showLoading();
+          }
+        });
+      });
+
+      $(document).on('fusionpdf:success', function (e, data) {
+        console.log('FusionPDF Success:', data);
+        Swal.fire({
+          title: 'Success!',
+          text: 'PDF generated and downloaded successfully.',
+          icon: 'success',
+          confirmButtonText: 'Great!',
+          timer: 3000,
+          timerProgressBar: true
+        });
+      });
+
+      $(document).on('fusionpdf:error', function (e, error) {
+        console.error('FusionPDF Error:', error);
+        Swal.fire({
+          title: 'Error!',
+          text: 'An error occurred while generating the PDF. Check the console for details.',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        });
+      });
+
+      // --- Initialize FusionPDF on buttons --- 
+
+      // Example 1: HTML to PDF
+      $('#generateHtmlPdfBtn').fusionPDF({
+        contentSource: '#myHtmlContent',
+        filename: 'html-document.pdf',
+        pdfOptions: { margin: 40 },
+        html2canvasOptions: { scale: 2 }
+      });
+
+      // Example 2: JSON to PDF
+      const myJsonData = {
+        reportTitle: "Quarterly Sales Report",
+        period: "Q3 2024",
+        author: "Sales Team",
+        data: [
+          { product: "Widget A", unitsSold: 1500, revenue: 75000 },
+          { product: "Widget B", unitsSold: 1200, revenue: 96000 },
+          { product: "Accessory X", unitsSold: 3000, revenue: 30000 }
+        ],
+        summary: "Overall positive growth in Q3."
+      };
+
+      $('#generateJsonPdfBtn').fusionPDF({
+        json: myJsonData,
+        filename: 'json-document.pdf',
+        pdfOptions: {
+          fontName: 'Courier',
+          fontSize: 10,
+          margin: { top: 50, right: 30, bottom: 50, left: 30 }
+        }
+      });
+
+      // --- Sidebar Navigation Active State ---
+      var scrollSpy = new bootstrap.ScrollSpy(document.body, {
+        target: '#sidebarMenu'
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
